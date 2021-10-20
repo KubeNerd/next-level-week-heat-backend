@@ -19,19 +19,22 @@ model User{
   login String
 
 
-
-  messages Message[]
   @@map("users")
 
+  messages Message[]
 
 }
 
-
-model Message{
+model Message {
   id String @id @default(uuid())
   text String
-  created_at DateTime @default(now()) 
-  user User @relation(fields: [userId], references:[id])
+  created_at DateTime @default(now())
+
+  user User @relation(fields: [user_id], references:[id])
+
+
   @@map("messages")
-  userId String
+
+  user_id String
 }
+

@@ -7,6 +7,7 @@ class AuthenticateUserController{
         const { code } = req.body;
         const service = new  AuthenticateUserService();
         try {
+            console.log("Chegou aqui........")
             const result = await service.execute(code);
             return res.status(201).json(result)
             

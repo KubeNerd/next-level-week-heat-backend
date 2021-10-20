@@ -1,3 +1,7 @@
+#Primeira Aula
+#https://www.youtube.com/watch?v=Wg7EuMtk7FE&ab_channel=Rocketseat
+
+
 Instalação do prisma
     npm install prisma
 

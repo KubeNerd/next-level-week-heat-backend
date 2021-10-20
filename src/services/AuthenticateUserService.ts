@@ -25,7 +25,9 @@ interface IUserResponse{
 import { prismaClient } from "../prisma";
 
 class AuthenticateUserService{
+    
     async execute(code:string){
+
         const url = `https://github.com/login/oauth/access_token`;
 
 
@@ -40,11 +42,14 @@ class AuthenticateUserService{
             }
         });
 
+        
+
         const response = await axios.get<IUserResponse>(`https://api.github.com/user`,{
             headers:{
                 authorization:`Bearer ${IAccessTokenResponse.access_token}`
             }
         });
+
 
         
       const { login, id, avatar_url, name} = response.data;
