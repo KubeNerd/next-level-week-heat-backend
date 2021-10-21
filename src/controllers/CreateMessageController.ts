@@ -7,9 +7,6 @@ class CreateMessageController{
         const { message } = req.body;
         const { user_id } = req.body;
 
-        console.log(`Mensagem ${message}`)
-        console.log(`Usuário ${user_id}`)
-
         const service = new CreateMessageService();
 
         const result = await service.execute(message, user_id);

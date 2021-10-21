@@ -1,9 +1,27 @@
+import "dotenv/config";
 import express from "express";
-
+import http from "http";
+import  cors from  "cors";
+import { Server } from "socket.io";
+import { router } from "./routes"; 
 
 const app = express();
-import "dotenv/config";
-import { router } from "./routes"; 
+
+
+app.use(express.static('public'));
+app.use(cors());
+
+const serverHttp = http.createServer(app);
+const io = new Server(serverHttp, {
+    cors:{
+        origin:"*"
+    }
+});
+
+io.on("connection", socket =>{
+    console.log(`Usuário conectado no socket ${socket.id}`);
+})
+
 
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
@@ -24,4 +42,4 @@ app.get("/sigin/callback", (req, res) =>{
 app.use(router);
 
 
-app.listen(4000, () => console.log(`Node.js + Typescript + Prisma 🚀`));
+export { serverHttp, io}
